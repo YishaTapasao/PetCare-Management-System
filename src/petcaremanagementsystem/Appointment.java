@@ -34,11 +34,16 @@ public class Appointment {
                 break;
                 
             case 3:
-
-                break;
+                appt.viewAppointmentDetails();
+                appt.updateAppointmentDetails();
+                appt.viewAppointmentDetails();
+               break;
                 
             case 4:
-              
+                appt.viewAppointmentDetails();
+                appt.deleteAppointmentDetails();
+                appt.viewAppointmentDetails();
+
                 break;
                 
             case 5:
@@ -107,6 +112,51 @@ public void viewAppointmentDetails() {
     conf.viewRecords(qry, hdrs, clms);
 }
 
- 
+private void updateAppointmentDetails() {
+    Scanner sc = new Scanner(System.in);
+    config conf = new config();
+    
+    System.out.print("Enter Appointment ID to update: ");
+    int id = sc.nextInt();
+    
+    while (conf.getSingleValue("SELECT appointment_id FROM tbl_appointment WHERE appointment_id = ?", id) == 0) {
+        System.out.println("Selected Appointment ID doesn't exist!");
+        System.out.print("Select Appointment ID Again: ");
+        id = sc.nextInt();
+    }
+    
+    sc.nextLine();
+    System.out.print("New Appointment Date (yyyy-mm-dd): ");
+    String newDate = sc.nextLine();
+    System.out.print("New Appointment Time: ");
+    String newTime = sc.nextLine();
+    System.out.print("New Reason for Appointment: ");
+    String newReason = sc.nextLine();
+    
+    String qry = "UPDATE tbl_appointment SET date = ?, time = ?, reason = ? WHERE appointment_id = ?";
+    conf.updateRecord(qry, newDate, newTime, newReason, id);
+    
+    System.out.println("Appointment updated successfully.");
+}
+
+private void deleteAppointmentDetails() {
+    Scanner sc = new Scanner(System.in);
+    config conf = new config();
+
+    System.out.print("Enter Appointment ID to delete: ");
+    int id = sc.nextInt();
+    
+    while (conf.getSingleValue("SELECT appointment_id FROM tbl_appointment WHERE appointment_id = ?", id) == 0) {
+        System.out.println("Selected Appointment ID doesn't exist!");
+        System.out.print("Select Appointment ID Again: ");
+        id = sc.nextInt();
+    }
+    
+    String qry = "DELETE FROM tbl_appointment WHERE appointment_id = ?";
+    conf.deleteRecord(qry, id); 
+    
+    System.out.println("Appointment deleted successfully.");
+}
+
     
 }

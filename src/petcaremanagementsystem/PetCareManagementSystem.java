@@ -38,7 +38,7 @@ public class PetCareManagementSystem {
                     appt.appointmentDetails(); 
                     break;
 
-                case 6:
+                case 5:
                     System.out.println("Exit Selected...type 'yes' to continue: ");
                     String resp = sc.next();
                     if(resp.equalsIgnoreCase("yes")){
@@ -47,7 +47,8 @@ public class PetCareManagementSystem {
                     break;
                 
             }
-            System.out.println("Do you want to exit?");
+            System.out.println("THANK YOU!!!");
+            
         } while(exit);
     }
 }
