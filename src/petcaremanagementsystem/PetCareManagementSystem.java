@@ -38,6 +38,9 @@ public class PetCareManagementSystem {
                     appt.appointmentDetails(); 
                     break;
 
+                case 4:
+                    break;
+                    
                 case 5:
                     System.out.println("Exit Selected...type 'yes' to continue: ");
                     String resp = sc.next();

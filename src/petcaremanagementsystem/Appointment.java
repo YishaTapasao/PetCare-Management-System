@@ -96,18 +96,18 @@ public class Appointment {
         System.out.print("Enter Reason: ");
         String reason = sc.nextLine();
      
-    String qry = "INSERT INTO tbl_appoinment (o_id, p_id, date, time, reason) VALUES (?, ?, ?, ?, ?)";
+    String qry = "INSERT INTO tbl_appointment (o_id, p_id, date, time, reason) VALUES (?, ?, ?, ?, ?)";
     conf.addRecord(qry, oId, pId, date, time, reason);
     }
     
 public void viewAppointmentDetails() {
-    String qry = "SELECT tbl_owner.o_id, tbl_owner.o_fname, tbl_owner.o_lname, tbl_pet.p_id, tbl_pet.p_name, tbl_appointment.date, tbl_appointment.time " +
+    String qry = "SELECT tbl_owner.o_id, tbl_owner.o_fname, tbl_owner.o_lname, tbl_pet.p_id, tbl_pet.p_name, tbl_appointment.date,tbl_appointment.appointment_id, tbl_appointment.time " +
                  "FROM tbl_appointment " +
                  "LEFT JOIN tbl_owner ON tbl_owner.o_id = tbl_appointment.o_id " +
                  "LEFT JOIN tbl_pet ON tbl_pet.p_id = tbl_appointment.p_id";
     
-    String[] hdrs = {"OWNER ID", "OWNER FIRST NAME", "OWNER LAST NAME0", "PET ID", "PET NAME", "APPOINTMENT DATE", "APPOINTMENT TIME"};
-    String[] clms = {"o_id", "o_fname", "o_lname", "p_id", "p_name", "date", "time"};
+    String[] hdrs = {"APPOINTMENT ID", "OWNER ID", "OWNER FIRST NAME", "OWNER LAST NAME0", "PET ID", "PET NAME", "APPOINTMENT DATE", "APPOINTMENT TIME"};
+    String[] clms = {"appointment_id","o_id", "o_fname", "o_lname", "p_id", "p_name", "date", "time"};
     config conf = new config();
     conf.viewRecords(qry, hdrs, clms);
 }

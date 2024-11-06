@@ -1,4 +1,3 @@
-
 package petcaremanagementsystem;
 
 import java.util.Scanner;
@@ -132,8 +131,7 @@ public class Owner {
         String qry = "DELETE FROM tbl_owner WHERE o_id = ?";
         conf.deleteRecord(qry, id);       
     }
-    
-    
+   
     
     
 }
